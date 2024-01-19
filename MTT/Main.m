@@ -14,3 +14,23 @@ loggedData = {'CPRESS';
 facewidth = 30;
 
 AutoProcessor(mainfolder, keyword, varname, loggedData, facewidth);
+
+%% INFO
+% Figure 1
+% Plots Quantity vs. Roll Angle 
+% Quantity = CPRESS, MIPPA, MISES
+% Produces separate plots for wheel and pinion
+% Produces separate plots for flank or root (MIPPA)
+
+% Figure 2
+% Plots Quantity vs. xflank or xroot 
+% Quantity = CPRESS, MIPPA, MISES
+% Produces separate plots for wheel and pinion
+% Produces separate plots for flank or root (MIPPA)
+
+% Figure 3
+% Plots peak quantity vs swept parameter
+% Quantity = CPRESS, MIPPA, MISES
+% swept parameter = centre distance, E, specified above
+% Produces separate plots for wheel and pinion
+% Produces separate plots for flank or root (MIPPA)

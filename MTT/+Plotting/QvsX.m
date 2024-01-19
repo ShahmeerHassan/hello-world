@@ -18,18 +18,18 @@ for g = 1:2
     
     for q = 1:length(loggedData)
         if ~strcmp(loggedData{q}, 'MaxInPlanePrincipalAbs')
-            % Create tab in figure
-            tabtitle = ['RollAngleVs', loggedData{q}, '_', gear{g}];
-            tab = uitab('title', tabtitle, 'BackgroundColor', [1 1 1]);
-            axes(tab)
-            hold on
-
             % Determine whether x is flank or root
             if strcmp(loggedData{q}, 'CPRESS')
                 xvar = 'xflank';
             elseif strcmp(loggedData{q}, 'MISES')
                 xvar = 'xroot';
             end
+
+            % Create tab in figure
+            tabtitle = [loggedData{q}, 'Vs', xvar '_', gear{g}];
+            tab = uitab('title', tabtitle, 'BackgroundColor', [1 1 1]);
+            axes(tab)
+            hold on
     
             for s = 1:length(simnames)
                 % Get sim name

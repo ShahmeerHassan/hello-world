@@ -1,4 +1,4 @@
-function sims = fnReadData(folderpaths, qvals,loggedData)
+function sims = fnReadData(folderpaths, qvals,loggedData, facewidth)
 fprintf('Reading data...')
 tic
 
@@ -45,10 +45,10 @@ for i = 1:Nsims
             sims.(simNames{i}).rawdata.(loggedData{j}).root.wheel   = table2array(readtable(fullfile(rootwheelcsv.folder, rootwheelcsv.name)));
 
             % Extract quantity from raw data table
-            sims.(simNames{i}).(loggedData{j}).flank.pinion = sims.(simNames{i}).rawdata.(loggedData{j}).flank.pinion(3:end, 2:end);
-            sims.(simNames{i}).(loggedData{j}).flank.wheel  = sims.(simNames{i}).rawdata.(loggedData{j}).flank.wheel(3:end, 2:end);
-            sims.(simNames{i}).(loggedData{j}).root.pinion  = sims.(simNames{i}).rawdata.(loggedData{j}).root.pinion(3:end, 2:end);
-            sims.(simNames{i}).(loggedData{j}).root.wheel   = sims.(simNames{i}).rawdata.(loggedData{j}).root.wheel(3:end, 2:end);
+            sims.(simNames{i}).(loggedData{j}).flank.pinion = sims.(simNames{i}).rawdata.(loggedData{j}).flank.pinion(3:end, 2:end) ./ facewidth;
+            sims.(simNames{i}).(loggedData{j}).flank.wheel  = sims.(simNames{i}).rawdata.(loggedData{j}).flank.wheel(3:end, 2:end)  ./ facewidth;
+            sims.(simNames{i}).(loggedData{j}).root.pinion  = sims.(simNames{i}).rawdata.(loggedData{j}).root.pinion(3:end, 2:end)  ./ facewidth;
+            sims.(simNames{i}).(loggedData{j}).root.wheel   = sims.(simNames{i}).rawdata.(loggedData{j}).root.wheel(3:end, 2:end)   ./ facewidth;
 
             % Save the xroot data
             sims.(simNames{i}).xroot.pinion = sims.(simNames{i}).rawdata.(loggedData{j}).root.pinion(3:end,1);
@@ -69,9 +69,8 @@ for i = 1:Nsims
             sims.(simNames{i}).rawdata.(loggedData{j}).wheel  = table2array(readtable(fullfile(wheelcsv.folder,  wheelcsv.name)));
 
             % Save array of the quantity (e.g. CPRESS)
-            sims.(simNames{i}).(loggedData{j}).pinion = sims.(simNames{i}).rawdata.(loggedData{j}).pinion(3:end, 2:end);
-            sims.(simNames{i}).(loggedData{j}).wheel  = sims.(simNames{i}).rawdata.(loggedData{j}).wheel(3:end, 2:end);
-
+            sims.(simNames{i}).(loggedData{j}).pinion = sims.(simNames{i}).rawdata.(loggedData{j}).pinion(3:end, 2:end) ./ facewidth;
+            sims.(simNames{i}).(loggedData{j}).wheel  = sims.(simNames{i}).rawdata.(loggedData{j}).wheel(3:end, 2:end)  ./ facewidth;
 
             % Record roll angle and x coordinate (flank or root)
             if j==1

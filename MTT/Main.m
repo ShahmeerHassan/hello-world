@@ -11,4 +11,6 @@ loggedData = {'CPRESS';
               'MaxInPlanePrincipalAbs';
               'MISES'};
 
-AutoProcessor(mainfolder, keyword, varname, loggedData);
+facewidth = 30;
+
+AutoProcessor(mainfolder, keyword, varname, loggedData, facewidth);

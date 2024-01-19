@@ -9,10 +9,7 @@ qvals = fnGetValues(foldernames);
 % Read in the data
 sims = fnReadData(folderpaths, qvals, loggedData);
 
-fnPlotData(sims, loggedData, varname);
-
-
-
-
+% Plot all the data
+fnPlotData(sims, loggedData, varname, qvals);
 
 end

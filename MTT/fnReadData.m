@@ -1,5 +1,6 @@
 function sims = fnReadData(folderpaths, qvals,loggedData)
 fprintf('Reading data...')
+tic
 
 sims = struct();
 
@@ -85,5 +86,6 @@ for i = 1:Nsims
     end
 end
 
-fprintf('Done.\n')
+time = toc;
+fprintf('Done in %.1f seconds.\n', time)
 end

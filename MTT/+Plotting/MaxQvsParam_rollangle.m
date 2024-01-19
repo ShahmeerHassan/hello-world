@@ -62,7 +62,7 @@ for g = 1:2
                 acronym = upper(loggedData{q}(isstrprop(loggedData{q}, 'upper')));
 
                 % Create tab in figure
-                tabtitle = ['RollAngleVs', acronym, '_', gear{g}, '_', regions{r}];
+                tabtitle = ['Peak ', loggedData{q}, '_', varname, '_', gear{g}, '_' regions{r}];
                 tab = uitab('title', tabtitle, 'BackgroundColor', [1 1 1]);
                 axes(tab)
                 hold on

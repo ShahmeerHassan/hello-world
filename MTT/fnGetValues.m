@@ -1,4 +1,4 @@
-function qvals = fnGetValues(foldernames)
+function [qvals, foldernames, folderpaths] = fnGetValues(foldernames, folderpaths)
 
 posteq = extractAfter(foldernames, '=');
 
@@ -27,5 +27,11 @@ end
 
 % Convert to array
 qvals = str2double(numericalParts);
+
+% Sort foldernames and folderpaths based on qvals
+[~, sortIdx] = sort(qvals);
+qvals       = qvals(sortIdx);
+foldernames = foldernames(sortIdx);
+folderpaths = folderpaths(sortIdx);
 
 end

@@ -1,11 +1,11 @@
 
 % The folder containing the folder of results
-mainfolder = 'C:\Users\Shahm\Imperial College London\MTT Group Project - ME - General\FEA Group Project\Centre distance investigation\Results';
+mainfolder = 'C:\Users\Shahm\Imperial College London\MTT Group Project - ME - General\FEA Group Project\Elastic Modulus Investigation';
 
 % a keyword that is in every folder
-keyword = 'rounded';
+keyword = 'E=';
 
-varname = 'Centre Distance';
+varname = 'Young''s Modulus';
 
 loggedData = {'CPRESS';
               'MaxInPlanePrincipalAbs';

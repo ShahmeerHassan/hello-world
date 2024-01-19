@@ -4,7 +4,7 @@ function AutoProcessor(mainfolder, keyword, varname, loggedData, facewidth)
 [folderpaths, foldernames] = fnGetSubfolders(mainfolder, keyword);
 
 % Determine what values have been used based on folder names
-qvals = fnGetValues(foldernames);
+[qvals, foldernames, folderpaths] = fnGetValues(foldernames, folderpaths);
 
 % Read in the data
 sims = fnReadData(folderpaths, qvals, loggedData, facewidth);

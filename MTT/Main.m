@@ -29,7 +29,7 @@ AutoProcessor(mainfolder, keyword, varname, loggedData, facewidth);
 % Produces separate plots for flank or root (MIPPA)
 
 % Figure 3
-% Plots peak quantity vs swept parameter
+% Plots peak quantity from fig1 vs swept parameter
 % Quantity = CPRESS, MIPPA, MISES
 % swept parameter = centre distance, E, specified above
 % Produces separate plots for wheel and pinion

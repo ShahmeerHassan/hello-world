@@ -50,11 +50,13 @@ for g = 1:2
             xl = xlabel(varname);
             yl = ylabel(['Peak ',loggedData{q}]);
             ttl = title(['Peak ', gear{g}, ' ', loggedData{q}, ' vs ', varname]);
-            lgd = legend('Location', 'eastoutside');
+            % lgd = legend('Location', 'eastoutside');
             xl.FontSize=16;
             yl.FontSize=16;
             ttl.FontSize=16;
-            lgd.FontSize=16;
+            % lgd.FontSize=16;
+            grid on
+            grid minor
         else
             for r = 1:length(regions)
                 acronym = upper(loggedData{q}(isstrprop(loggedData{q}, 'upper')));
@@ -89,11 +91,13 @@ for g = 1:2
                 xl = xlabel(varname);
                 yl = ylabel(['Peak ',loggedData{q}]);
                 ttl = title(['Peak ', gear{g}, ' ', regions{r}, ' ', loggedData{q}, ' vs ', varname]);
-                lgd = legend('Location', 'eastoutside');
+                % lgd = legend('Location', 'eastoutside');
                 xl.FontSize=16;
                 yl.FontSize=16;
                 ttl.FontSize=16;
-                lgd.FontSize=16;
+                % lgd.FontSize=16;
+                grid on
+                grid minor
             end
 
         end

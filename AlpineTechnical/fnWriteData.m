@@ -1,0 +1,3 @@
+function fnWriteData(math)
+    
+end

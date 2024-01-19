@@ -1,0 +1,150 @@
+function fnPlotLaps(data)
+% This function will plot a tabulated figure of the data
+figure(1)
+
+tab1 = uitab('title', 'vCar');
+axes(tab1)
+subplot(2,1,1)
+fnPlotRuns(data, 't', 'vCar')
+xlabel('Time (s)')
+ylabel('vCar (kph)')
+subplot(2,1,2)
+fnPlotRuns(data, 'sLap', 'vCar')
+xlabel('sLap (m)')
+ylabel('vCar (kph)')
+
+tab2 = uitab('title', 'Yaw');
+axes(tab2)
+subplot(2,1,1)
+fnPlotRuns(data, 't', 'Yaw')
+xlabel('Time (s)')
+ylabel('Yaw Angle (deg)')
+subplot(2,1,2)
+fnPlotRuns(data, 'sLap', 'Yaw')
+xlabel('sLap (m)')
+ylabel('Yaw Angle (deg)')
+
+tab2_5 = uitab('title', 'YawFilt');
+axes(tab2_5)
+subplot(2,1,1)
+fnPlotRuns(data, 't', 'YawFilt')
+xlabel('Time (s)')
+ylabel('Yaw Angle Filtered (deg)')
+subplot(2,1,2)
+fnPlotRuns(data, 'sLap', 'YawFilt')
+xlabel('sLap (m)')
+ylabel('Yaw Angle Filtered (deg)')
+
+tab3 = uitab('title', 'HeadWind');
+axes(tab3)
+subplot(2,1,1)
+fnPlotRuns(data, 't', 'HeadWind')
+xlabel('Time (s)')
+ylabel('Windspeed at Pitot (kph)')
+subplot(2,1,2)
+fnPlotRuns(data, 'sLap', 'HeadWind')
+xlabel('sLap (m)')
+ylabel('Windspeed at Pitot (kph)')
+
+tab4 = uitab('title', 'Frh');
+axes(tab4)
+subplot(2,1,1)
+fnPlotRuns(data, 't', 'Frh')
+xlabel('Time (s)')
+ylabel('FRH (mm)')
+ylim([-20 40])
+subplot(2,1,2)
+fnPlotRuns(data, 'sLap', 'Frh')
+xlabel('sLap (m)')
+ylabel('FRH (mm)')
+ylim([-20 40])
+
+tab4_5 = uitab('title', 'FrhFilt');
+axes(tab4_5)
+subplot(2,1,1)
+fnPlotRuns(data, 't', 'FrhFilt')
+xlabel('Time (s)')
+ylabel('FRH Filtered (mm)')
+ylim([-20 40])
+subplot(2,1,2)
+fnPlotRuns(data, 'sLap', 'FrhFilt')
+xlabel('sLap (m)')
+ylabel('FRH Filtered (mm)')
+ylim([-20 40])
+
+tab5 = uitab('title', 'Rrh');
+axes(tab5)
+subplot(2,1,1)
+fnPlotRuns(data, 't', 'Rrh')
+xlabel('Time (s)')
+ylabel('RRH (mm)')
+subplot(2,1,2)
+fnPlotRuns(data, 'sLap', 'Rrh')
+xlabel('sLap (m)')
+ylabel('RRH (mm)')
+
+tab5_5 = uitab('title', 'RrhFilt');
+axes(tab5_5)
+subplot(2,1,1)
+fnPlotRuns(data, 't', 'RrhFilt')
+xlabel('Time (s)')
+ylabel('RRH Filtered (mm)')
+subplot(2,1,2)
+fnPlotRuns(data, 'sLap', 'RrhFilt')
+xlabel('sLap (m)')
+ylabel('RRH Filtered (mm)')
+
+tab6 = uitab('title', 'AeroCoef');
+axes(tab6)
+subplot(2,1,1)
+fnPlotRuns(data, 't', 'AeroCoef')
+xlabel('Time (s)')
+subplot(2,1,2)
+fnPlotRuns(data, 'sLap', 'AeroCoef')
+xlabel('sLap (m)')
+
+tab6_5 = uitab('title', 'AeroCoefFilt');
+axes(tab6_5)
+subplot(2,1,1)
+fnPlotRuns(data, 't', 'AeroCoefFilt')
+xlabel('Time (s)')
+ylabel('AeroCoef Filtered')
+subplot(2,1,2)
+fnPlotRuns(data, 'sLap', 'AeroCoefFilt')
+xlabel('sLap (m)')
+ylabel('AeroCoef Filtered')
+
+tab7 = uitab('title', 'AeroNoise');
+axes(tab7)
+subplot(2,1,1)
+fnPlotRuns(data, 't', 'AeroNoise')
+xlabel('Time (s)')
+ylabel('Pitot Noise')
+subplot(2,1,2)
+fnPlotRuns(data, 'sLap', 'AeroNoise')
+xlabel('sLap (m)')
+ylabel('Pitot Noise')
+
+tab8 = uitab('title', 'GLS');
+axes(tab8)
+subplot(2,1,1)
+fnPlotRuns(data, 't', 'GLS')
+xlabel('Time (s)')
+ylabel('Is Grip Limited (boolean)')
+subplot(2,1,2)
+fnPlotRuns(data, 'sLap', 'GLS')
+xlabel('sLap (m)')
+ylabel('Is Grip Limited (boolean)')
+
+tab9 = uitab('title', 'FWF');
+axes(tab9)
+subplot(2,1,1)
+fnPlotRuns(data, 't', 'FWF')
+xlabel('Time (s)')
+ylabel('FW angle (deg)')
+subplot(2,1,2)
+fnPlotRuns(data, 'sLap', 'FWF')
+xlabel('sLap (m)')
+ylabel('FW angle (deg)')
+
+end

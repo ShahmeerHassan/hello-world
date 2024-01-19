@@ -46,12 +46,12 @@ for i = 1:Nsims
             % Extract quantity from raw data table
             sims.(simNames{i}).(loggedData{j}).flank.pinion = sims.(simNames{i}).rawdata.(loggedData{j}).flank.pinion(3:end, 2:end);
             sims.(simNames{i}).(loggedData{j}).flank.wheel  = sims.(simNames{i}).rawdata.(loggedData{j}).flank.wheel(3:end, 2:end);
-            sims.(simNames{i}).(loggedData{j}).root.pinion = sims.(simNames{i}).rawdata.(loggedData{j}).root.pinion(3:end, 2:end);
-            sims.(simNames{i}).(loggedData{j}).root.wheel  = sims.(simNames{i}).rawdata.(loggedData{j}).root.wheel(3:end, 2:end);
+            sims.(simNames{i}).(loggedData{j}).root.pinion  = sims.(simNames{i}).rawdata.(loggedData{j}).root.pinion(3:end, 2:end);
+            sims.(simNames{i}).(loggedData{j}).root.wheel   = sims.(simNames{i}).rawdata.(loggedData{j}).root.wheel(3:end, 2:end);
 
             % Save the xroot data
-            sims.(simNames{i}).xroot.pinion = sims.(simNames{i}).rawdata.(loggedData{j}).flank.pinion(3:end,1);
-            sims.(simNames{i}).xroot.wheel  = sims.(simNames{i}).rawdata.(loggedData{j}).root.pinion(3:end,1);
+            sims.(simNames{i}).xroot.pinion = sims.(simNames{i}).rawdata.(loggedData{j}).root.pinion(3:end,1);
+            sims.(simNames{i}).xroot.wheel  = sims.(simNames{i}).rawdata.(loggedData{j}).root.wheel(3:end,1);
         else
             % Get all files in folder
             allfiles = dir(folderpaths{i});

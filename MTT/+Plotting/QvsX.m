@@ -28,7 +28,7 @@ for g = 1:2
             if strcmp(loggedData{q}, 'CPRESS')
                 xvar = 'xflank';
             elseif strcmp(loggedData{q}, 'MISES')
-                xvar = 'xflank';
+                xvar = 'xroot';
             end
     
             for s = 1:length(simnames)
@@ -50,7 +50,7 @@ for g = 1:2
     
             end
             
-            xl = xlabel('Roll Angle [deg]');
+            xl = xlabel(xvar);
             yl = ylabel(['Max ',loggedData{q}]);
             ttl = title(['Max ', gear{g}, ' ', loggedData{q}, ' vs ', xvar, ' for varying ', varname]);
             lgd = legend('Location', 'eastoutside');
@@ -87,9 +87,9 @@ for g = 1:2
         
                 end
                 
-                xl = xlabel('Roll Angle [deg]');
+                xl = xlabel(regions{r});
                 yl = ylabel(['Max ',loggedData{q}]);
-                ttl = title(['Max ', gear{g}, ' ', regions{r}, ' ', loggedData{q}, ' vs roll angle for varying ', varname]);
+                ttl = title(['Max ', gear{g}, ' ', loggedData{q}, ' vs ', regions{r}, ' for varying ', varname]);
                 lgd = legend('Location', 'eastoutside');
                 xl.FontSize=16;
                 yl.FontSize=16;

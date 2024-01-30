@@ -2,7 +2,7 @@ function [qvals, foldernames, folderpaths] = fnGetValues(foldernames, folderpath
 
 posteq = extractAfter(foldernames, '=');
 
-posteq = strrep(posteq, '-', '.');
+% posteq = strrep(posteq, '-', '.');
 
 % Initialize a cell array to store the numerical parts of the filename
 numericalParts = cell(size(posteq));
@@ -16,7 +16,7 @@ for i = 1:numel(posteq)
     % \. looks for decimal point
     % \d* looks for digits but if they exist
     % ? indicates the group is optional
-    match = regexp(posteq{i}, '\d+(\.\d*)?', 'match');
+    match = regexp(posteq{i}, '-?\d+(\.\d*)?', 'match');
     
     if ~isempty(match)
         numericalParts{i} = match{1};

@@ -2,11 +2,13 @@
 % The folder containing the folder of results
 mainfolder = 'C:\Users\Shahm\Imperial College London\MTT Group Project - ME - General\FEA Group Project\Elastic Modulus Investigation';
 % mainfolder = 'C:\Users\Shahm\Imperial College London\MTT Group Project - ME - General\FEA Group Project\x1 investigation\Results';
+mainfolder = 'C:\Users\Shahm\Imperial College London\MTT Group Project - ME - General\FEA Group Project\Centre distance investigation\Results';
+
 
 % a keyword that is in every folder
-keyword = 'E=';
+keyword = 'round';
 
-varname = 'Young''s Modulus';
+varname = 'Centre Distance';
 
 loggedData = {'CPRESS';
               'MaxInPlanePrincipalAbs';

@@ -1,6 +1,7 @@
 
 % The folder containing the folder of results
 mainfolder = 'C:\Users\Shahm\Imperial College London\MTT Group Project - ME - General\FEA Group Project\Elastic Modulus Investigation';
+% mainfolder = 'C:\Users\Shahm\Imperial College London\MTT Group Project - ME - General\FEA Group Project\x1 investigation\Results';
 
 % a keyword that is in every folder
 keyword = 'E=';

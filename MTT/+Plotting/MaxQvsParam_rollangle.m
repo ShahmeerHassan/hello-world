@@ -45,10 +45,26 @@ for g = 1:2
                 peaks(s) = max(maxes(  and(sims.(nsim).rollangle.(gear{g})>=minroll,sims.(nsim).rollangle.(gear{g})<=maxroll)   ));
     
             end
-            plot(qvals, peaks, 'color', [0 0 0], 'LineWidth', lw)
             
-            xl = xlabel(varname);
-            yl = ylabel(['Peak ',loggedData{q}]);
+
+            if strcmp(loggedData{q}, 'CPRESS') && contains(varname, 'odulus')
+                plot(qvals, peaks, 'marker', 'x', 'MarkerSize', 10, 'color', [0 0 0], 'LineWidth', lw, 'DisplayName', 'FEA Data');
+
+                fnFitCurve(qvals, peaks, 0.5) % write the function to determine a curve of form y = ax^0.5
+
+                lgd = legend('Location', 'eastoutside');
+                lgd.FontSize=16;
+            else
+                plot(qvals, peaks, 'marker', 'x', 'MarkerSize', 10, 'color', [0 0 0], 'LineWidth', lw);
+            end
+            
+            if contains(varname, 'Modulus')
+                units = ' [GPa]';
+            else
+                units = '';
+            end
+            xl = xlabel([varname, units]);
+            yl = ylabel(['Peak ',loggedData{q}, ' [MPa]']);
             ttl = title(['Peak ', gear{g}, ' ', loggedData{q}, ' vs ', varname]);
             % lgd = legend('Location', 'eastoutside');
             xl.FontSize=16;
@@ -106,6 +122,7 @@ for g = 1:2
             end
 
         end
+        
 
     end
 

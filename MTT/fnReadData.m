@@ -9,6 +9,7 @@ Nsims = length(folderpaths);
 % Assign names to sims
 simNames = cell(Nsims, 1);
 for i = 1:Nsims
+    try
 
     % Assign name to sim
     simNames{i} = strcat('sim', num2str(i));
@@ -22,7 +23,7 @@ for i = 1:Nsims
             allfiles = dir(folderpaths{i});
             
             % Get files which only contain 'MaxInPlanePrincipalAbs'
-            pinwh = allfiles(contains({allfiles.name}, loggedData{j}));
+            pinwh = allfiles(and(contains({allfiles.name}, loggedData{j}), contains({allfiles.name}, '.csv')));
 
             % Get files which only contain 'Flank' or 'Root'
             flankcsv = pinwh(contains({pinwh.name}, 'Flank'));
@@ -58,7 +59,7 @@ for i = 1:Nsims
             allfiles = dir(folderpaths{i});
             
             % Get files which only contain the parameter name e.g. CPRESS
-            pinwh = allfiles(contains({allfiles.name}, loggedData{j}));
+            pinwh = allfiles(and(contains({allfiles.name}, loggedData{j}), contains({allfiles.name}, '.csv')));
 
             % Sort Pinion and Wheel (there should now only be one of each)
             pinioncsv = pinwh(contains({pinwh.name}, 'Pinion'));
@@ -82,6 +83,10 @@ for i = 1:Nsims
             end
 
         end
+    end
+    catch
+        warning('Something failed')
+        disp(folderpaths{i})
     end
 end
 

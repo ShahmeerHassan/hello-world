@@ -88,8 +88,13 @@ for g = 1:2
                 end
                 plot(qvals, peaks, 'color', [0 0 0], 'LineWidth', lw)
                 
-                xl = xlabel(varname);
-                yl = ylabel(['Peak ',loggedData{q}]);
+                if contains(varname, 'Modulus')
+                    units = ' [GPa]';
+                else
+                    units = '';
+                end
+                xl = xlabel([varname, units]);
+                yl = ylabel(['Peak ',loggedData{q}, ' [MPa]']);
                 ttl = title(['Peak ', gear{g}, ' ', regions{r}, ' ', loggedData{q}, ' vs ', varname]);
                 % lgd = legend('Location', 'eastoutside');
                 xl.FontSize=16;

@@ -44,7 +44,7 @@ for g = 1:2
             end
             
             xl = xlabel('Roll Angle [deg]');
-            yl = ylabel(['Max ',loggedData{q}]);
+            yl = ylabel(['Max ',loggedData{q}, ' [MPa]']);
             ttl = title(['Max ', gear{g}, ' ', loggedData{q}, ' vs roll angle for varying ', varname]);
             lgd = legend('Location', 'eastoutside');
             xl.FontSize=16;

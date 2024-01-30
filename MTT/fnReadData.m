@@ -84,8 +84,8 @@ for i = 1:Nsims
 
         end
     end
-    catch
-        warning('Something failed')
+    catch ME
+        warning(ME.message)
         disp(folderpaths{i})
     end
 end

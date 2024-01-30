@@ -1,6 +1,9 @@
-function fnEdCode()
+function [hertz_pressure, rollAnglePinion, angular_pitch_pinion] = fnEdCode(a, E)
 % Chat GPT converted Ed's code from Python to MATLAB
 
+% a = centre distance in mm
+
+%% Initial
 cid = [0, 1, 7, 0, 2, 6, 4, 3];
 
 % Pinion Basic Parameters
@@ -19,6 +22,8 @@ fprintf('Pinion Parameters are given by\n');
 fprintf('Mn is %.2f mm, z1 is %d, x1 is %.2f mm\n', Mn, z1, x1);
 fprintf('dref1 is %.2f mm, da1 is %.2f mm, df1 is %.2f mm, and db1 is %.2f mm\n', dref1, da1, df1, db1);
 fprintf('-\n');
+
+angular_pitch_pinion = 360/z1;
 
 %% Wheel Basic Parameters
 z2 = 50 + cid(7) + cid(8);
@@ -46,7 +51,7 @@ a_tm = (Mn * cos(alpha_n) * 0.5 * (z1 + z2)) / (cos(alpha_tw_tm));
 fprintf('a_Max and a_Min are %.2f mm and %.2f mm\n', a_max, a_tm);
 
 % Decide on a value to use and calculate corresponding working pressure angle
-a = 250.5;
+% a = 250.5;
 alpha_tw = acos((db1 + db2) / (2 * a));
 fprintf('Chosen a and working pressure angle are %.2f mm and %.2f\n', a, alpha_tw);
 
@@ -234,7 +239,7 @@ fprintf('-\n');
 % INPUT PARAMETERS ARE TORQUE, FACE WIDTH, ELASTIC MODULUS, AND POISSON'S RATIO
 T = 2500; % Nm
 b = 30; % mm
-E = 207; % GPa
+% E = 207; % GPa % added as input to function
 v = 0.3;
 
 % Tooth normal force per unit length for Pinion torque and base radius
@@ -285,6 +290,9 @@ P0 = zeros(1, N+1);
 for i = 1:N+1
     P0(1, i) = ((Pn_x(1, i) * E_star) / (pi * R(1, i)))^0.5;
 end
+
+hertz_pressure = P0;
+rollAnglePinion = theta1_degrees;
 
 fprintf('Hertz pressure against pinion roll angle plotted\n');
 

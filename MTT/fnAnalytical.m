@@ -3,13 +3,16 @@ function fnAnalytical(sims, varname)
 % CPRESS vs. Roll Angle
 
 a_def = 251;
-E_def = 200;
+E_def = 207;
+x_def = 0.5;
 
 % work out the parameter being swept
 if contains(lower(varname), 'centre')
     defparam = a_def; % default centre distance
 elseif contains(lower(varname), 'modulus')
     defparam = E_def; % default 
+elseif contains(lower(varname), 'x1')
+    defparam = x_def;
 end
 
 % find the sim with the default parameter value
@@ -24,7 +27,7 @@ for i=1:numel(fields)
     end
 end
 if valfound == 0
-    error('Default parameter sim not found')
+    warning('Default parameter sim not found')
 end
 
 % Get analytical hertz pressure

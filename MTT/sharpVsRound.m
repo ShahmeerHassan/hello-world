@@ -89,6 +89,6 @@ yl.FontSize=16;
 ttl.FontSize=16;
 % lgd.FontSize=16;
 
-xlim([7 13.5])
-ylim([500 1500])
+% xlim([7 13.5])
+% ylim([500 1500])
 

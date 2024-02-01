@@ -2,7 +2,7 @@ function fnAnalytical(sims, varname)
 
 % CPRESS vs. Roll Angle
 
-a_def = 250;
+a_def = 251;
 E_def = 200;
 
 % work out the parameter being swept
@@ -28,9 +28,9 @@ if valfound == 0
 end
 
 % Get analytical hertz pressure
-[hertz_pressure, rollAnglePinion, angular_pitch_pinion] = fnEdCode(a_def, E_def);
+[hertz_pressure, rollAnglePinion, angular_pitch_pinion, alpha_tw] = fnEdCode(a_def, E_def);
 
-rollAnglePinion = rollAnglePinion - angular_pitch_pinion;
+rollAnglePinion = rollAnglePinion - alpha_tw + angular_pitch_pinion;
 
 tab = uitab('title', 'FEA vs Analytical', 'BackgroundColor', [1 1 1]);
 axes(tab)

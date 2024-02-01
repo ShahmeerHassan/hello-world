@@ -1,4 +1,4 @@
-function [hertz_pressure, rollAnglePinion, angular_pitch_pinion] = fnEdCode(a, E)
+function [hertz_pressure, rollAnglePinion, angular_pitch_pinion, alpha_tw_degrees] = fnEdCode(a, E)
 % Chat GPT converted Ed's code from Python to MATLAB
 
 % a = centre distance in mm
@@ -313,9 +313,22 @@ fprintf('Maximum bending stress at tooth roots for wheel is %.2f MPa\n', sigma_b
 
 % Calculate delta 2 for gears to touch
 G = z2 / z1;
+gear_ratio = G;
 delta2 = (1 + (1 / G)) * (alpha_tw + (tan(alpha_n) - alpha_n)) + (2 * (x1 + x2) * tan(alpha_n)) / z2 - (2 * a * sin(alpha_tw)) / (z2 * Mn * cos(alpha_n));
 delta2deg = delta2 * 360 / (2 * pi);
 fprintf('delta2: %.2f degrees\n', delta2deg);
 
+%% Calculate contact patch
+contact_curvature1 = (tan(alpha_tw)*db1/2) /1000; % metres
+contact_curvature2 = (tan(alpha_tw)*db2/2) /1000;
+
+contactCurvature = (1/contact_curvature1 + 1/contact_curvature2)^(-1); % must be in metres
+
+contact_radius = 2*(Pn_max * contactCurvature / (pi*E_star*1000000000))^0.5;
+
+fprintf('Contact radius is %.4f mm\n', contact_radius*1000)
+
+alpha_tw_degrees = rad2deg(alpha_tw);
+fprintf('alpha_tw is %.3f degrees\n', alpha_tw_degrees)
 
 end

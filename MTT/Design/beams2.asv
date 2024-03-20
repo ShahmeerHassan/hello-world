@@ -1,0 +1,105 @@
+% Beam properties
+L = 0.71; % Length of the beam in meters
+
+E = 212e+09;
+davg = 44.82857143/1000;
+I = 0.25*pi*(davg/2)^4;
+
+% Loads and their positions
+loads = -1.*[228.875657
+5.188547206
+17.9033775
+25.49133242
+34.96753419
+46.54178801
+1.285420727
+80.81614601
+]; % Load values in Newtons
+
+distances = [0.080
+0.206
+0.285
+0.340
+0.436
+0.503
+0.599
+0.346
+]; % Positions of the loads in meters
+
+% Calculate the sum of the loads
+sum_loads = sum(loads);
+
+% Calculate the moment about the left end of the beam
+moment = sum(loads .* distances);
+
+% Construct matrix A and vector B
+A = [1, 1; 0, -L];
+B = [-sum_loads; sum(loads.*distances)];
+
+% Calculate reaction forces
+X =A\B;
+Ra = X(1);
+Rb = X(2);
+
+% mesh
+x = linspace(0,L,100);
+
+% Calculate the sum of all the terms
+tempval = 0;
+for i = 1:length(loads)
+    tempval = tempval + (loads(i)/6) * max(0, x - distances(i)).^3;
+end
+
+% Adjust the boundary condition calculation for C
+% Calculate deflection using boundary condition that deflection at x = L is 0
+v_at_L = (Ra/6)*L^3 + sum(loads/6 .* (L - distances).^3); % Deflection due to Ra and loads at x = L
+C = -v_at_L / L; % Adjusted C calculation
+
+% Calculate deflection
+v = (   (Ra/6)*x.^3 + tempval + C*x   )/(E*I);
+vmm = v * 1000;
+
+% get max
+[max_deflection_mm, max_index] = max(vmm);
+max_location_m = x(max_index);
+
+% Plot the deflection curve
+close all
+figure('Color', [1 1 1])
+plot(x, vmm, 'LineWidth', 1, 'Color', [0 0 0]); % Plot deflection with a thicker line
+title('Layshaft Deflection');
+xlabel('Position along the beam (m)');
+ylabel('Deflection [mm]');
+hold on; % Keep the plot for adding scatter points
+
+% Loop through loads to add scatter points at the load positions
+for i = 1:length(loads)
+    % Coordinates for the scatter point
+    x_scatter = distances(i);
+    y_scatter = interp1(x, vmm, x_scatter); % Interpolate to find the deflection at the load position
+    
+    % Add scatter point
+    scatter(x_scatter, y_scatter, 'Marker', 'x', 'SizeData', 200, 'Color', [1 0 0], 'LineWidth', 1.5);
+end
+
+% Get current axis limits
+x_limits = xlim;
+y_limits = ylim;
+
+% Position for the text in the bottom right corner
+x_pos = x_limits(2) * 0.98; % Slightly inside the right limit
+y_pos = y_limits(1) + diff(y_limits) * 0.02; % Slightly above the bottom limit
+
+% Find maximum deflection and its position
+[max_deflection_mm, max_index] = max(vmm);
+max_location_m = x(max_index);
+% Annotate the maximum deflection on the plot
+max_deflection_text = sprintf('Max deflection: %.2f mm at %.2f m', max_deflection_mm, max_location_m);
+text(x_pos, y_pos, max_deflection_text, 'FontSize', 24, 'HorizontalAlignment', 'right', 'VerticalAlignment', 'bottom', 'BackgroundColor', 'w', 'EdgeColor', 'k');
+
+hold off; % Release the plot hold
+
+grid on
+grid minor
+ax = gca;
+ax.FontSize = 24;

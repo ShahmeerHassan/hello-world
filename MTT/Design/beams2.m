@@ -1,5 +1,6 @@
-% Beam properties
-engine = 1;
+clear all
+
+engine = 3;
 
 %% engine 1
 if engine==1
@@ -86,6 +87,9 @@ elseif engine == 3
     62.354
     19.278
     ];
+elseif engine == 0
+    loads = [];
+    distances = [];
 end
 
 %%
@@ -98,8 +102,12 @@ I = 0.25*pi*(davg/2)^4;
 rho_gear = 8000;
 
 % volume
-V = pi.*(dref./2).^2.*b / 1000000000;
-loads = [-1 .* rho_gear * V * 9.81; 80.81614601];
+try
+    V = pi.*(dref./2).^2.*b / 1000000000;
+catch
+    V = [];
+end
+loads = [-1 .* rho_gear * V * 9.81; -80.81614601];
 distances = [distances; 0.346];
 % Calculate the sum of the loads
 sum_loads = sum(loads);
@@ -156,6 +164,8 @@ elseif engine == 2
     title('Layshaft Deflection (1.3L Engine)');
 elseif engine == 3
     title('Layshaft Deflection (1.8L Engine)');
+elseif engine == 0
+    title('Layshaft Deflection under weight')
 end
 xlabel('Position along the beam (m)');
 ylabel('Deflection [mm]');

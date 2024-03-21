@@ -1,6 +1,6 @@
 clear all
 
-engine = 13;
+engine = 1;
 
 % 0 = layshaft (no load)
 % 1 = layshaft engine 1.1L
@@ -307,3 +307,13 @@ ax.FontSize = 24;
 
 fprintf('Max deflection: %.15f \n', v(max_index))
 fprintf('n_critical: %.0f \n', nc)
+
+%% whirl frequencies
+W = loads(1:end-1);
+negdist = L-distances(1:end-1);
+deltas = W.*negdist.*(3.*L.^2 - 4.*negdist.^2)./(48*E*I);
+deltas = abs(deltas);
+g = 9.81;
+
+omega = sqrt(  g*  ( sum(W.*deltas) / sum( W .* deltas.^2 ) )  );
+omegarpm = (omega / (2 * pi)) * 60

@@ -1,11 +1,13 @@
 clear all
 
-engine = 10;
+engine = 13;
 
+% 0 = layshaft (no load)
 % 1 = layshaft engine 1.1L
 % 2 = layshaft engine 1.3L
 % 3 = layshaft engine 1.8L
 
+% 10 - driveshaft (no load)
 % 11 = driveshaft engine 1.1L
 % 12 = driveshaft engine 1.3L
 % 13 = driveshaft engine 1.8L

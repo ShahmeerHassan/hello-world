@@ -1,6 +1,14 @@
 clear all
 
-engine = 3;
+engine = 10;
+
+% 1 = layshaft engine 1.1L
+% 2 = layshaft engine 1.3L
+% 3 = layshaft engine 1.8L
+
+% 11 = driveshaft engine 1.1L
+% 12 = driveshaft engine 1.3L
+% 13 = driveshaft engine 1.8L
 
 %% engine 1
 if engine==1
@@ -87,16 +95,103 @@ elseif engine == 3
     62.354
     19.278
     ];
-elseif engine == 0
+elseif engine == 0 || engine == 10
     loads = [];
     distances = [];
+elseif engine == 11
+    distances = [0.050
+    0.129
+    0.184
+    0.280
+    0.347
+    0.440
+    ];
+
+    dref = [176.67
+    147.80
+    129.90
+    121.24
+    107.96
+    143.18
+    ];
+
+    b = [31.177
+    47.112
+    53.001
+    58.890
+    64.779
+    41.569
+    ];
+
+elseif engine == 12
+    distances = [0.047
+    0.132
+    0.179
+    0.274
+    0.344
+    0.436
+    ];
+
+    dref = [133.37
+    125.29
+    115.47
+    103.92
+    80.83
+    96.99
+    ];
+
+    b = [36.373
+    41.223
+    44.341
+    46.765
+    58.890
+    44.341
+    ];
+
+elseif engine == 13
+    distances = [0.047
+    0.132
+    0.183
+    0.277
+    0.346
+    0.441
+    ];
+
+    dref = [141.45
+    125.29
+    119.51
+    103.92
+    86.60
+    106.23
+    ];
+
+    b = [84.870
+    75.171
+    71.707
+    62.354
+    51.962
+    44.341
+    ];
+
 end
 
 %%
-L = 0.71; % Length of the beam in meters
+
+rho_shaft = 7850;
+if engine < 5
+    L = 0.71; % Length of the beam in meters
+    davg = 44.82857143/1000;
+    W = 80.81614601;
+    xCOM = 0.346;
+elseif engine < 15
+    L = 0.52009;
+    davg = 29.76052222/1000;
+    W = (364238.00/1000000000)  *  rho_shaft  *  9.81; % rho * V * g
+    xCOM = 0.25498;
+end
 
 E = 212e+09;
-davg = 44.82857143/1000;
+
 I = 0.25*pi*(davg/2)^4;
 
 rho_gear = 8000;
@@ -107,8 +202,8 @@ try
 catch
     V = [];
 end
-loads = [-1 .* rho_gear * V * 9.81; -80.81614601];
-distances = [distances; 0.346];
+loads = [-1 .* rho_gear * V * 9.81; -W];
+distances = [distances; xCOM];
 % Calculate the sum of the loads
 sum_loads = sum(loads);
 
@@ -166,8 +261,16 @@ elseif engine == 3
     title('Layshaft Deflection (1.8L Engine)');
 elseif engine == 0
     title('Layshaft Deflection under weight')
+elseif engine == 10
+    title('Driveshaft Deflection under weight')
+elseif engine == 11
+    title('Driveshaft Deflection (1.1L Engine)');
+elseif engine == 12
+    title('Driveshaft Deflection (1.3L Engine)');
+elseif engine == 13
+    title('Driveshaft Deflection (1.8L Engine)');
 end
-xlabel('Position along the beam (m)');
+xlabel('Position along shaft (m)');
 ylabel('Deflection [mm]');
 hold on; % Keep the plot for adding scatter points
 

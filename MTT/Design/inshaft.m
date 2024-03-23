@@ -32,7 +32,7 @@ Sy = 5.95e08;
 Se = 3.67e09;
 
 Lmom = bearing_width + max(b) - b./2;
-L = bearing_width + max(b) + 0.2;
+L = bearing_width + max(b);
 M = Lmom .* Fr;
 
 dASME = ( (5.1/taud)*( (Cm*M).^2 + (Ct*T).^2 ).^0.5 ).^(1/3);

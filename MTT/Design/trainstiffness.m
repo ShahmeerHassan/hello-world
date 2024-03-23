@@ -8,6 +8,9 @@ J = pi.*d.^4 /32;
 Gshear = 8.25e10;
 kti = Gshear.*J./L; % torsional stiffnesses
 
+w = sqrt(kti ./ J);
+w = (w / (2 * pi)) * 60
+
 rho_gear = 8000;
 
 G = [

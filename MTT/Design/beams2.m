@@ -315,5 +315,11 @@ deltas = W.*negdist.*(3.*L.^2 - 4.*negdist.^2)./(48*E*I);
 deltas = abs(deltas);
 g = 9.81;
 
-omega = sqrt(  g*  ( sum(W.*deltas) / sum( W .* deltas.^2 ) )  );
+if engine<5
+    omega = sqrt(  g*  ( sum(W.*deltas) / sum( W .* deltas.^2 ) )  );
+else
+    omega = sqrt(  g*  ( (W.*deltas) ./ (W .* deltas.^2) )  );
+    [omega, idx] = min(omega);
+    idx
+end
 omegarpm = (omega / (2 * pi)) * 60
